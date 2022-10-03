@@ -88,7 +88,7 @@ namespace WindowsFormsApp1
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
-            textBox4.Text = "";
+            textBox4.Text = "f(x)=";
             label1.Text = "";
             chart1.Series[0].Points.Clear();
         }
