@@ -38,27 +38,18 @@ namespace WindowsFormsApp1
         }
         private void dichotomy(float A, float B, float E, Function f)
         {
-            for (float i = A; i < B; i+=E)
+            for (float i = A; i <= B; i+=1)
             {
               
                 chart1.Series[0].Points.AddXY((i), f.calculate(i));
             }
             if (A < B)
             {
-                int o = 1;
-                float soj;
-                while (Math.Abs(f.calculate(A) - f.calculate(B)) > E)
+                float soj=(A + B) / 2;
+                while ((Math.Abs(B-A) > E ))
                 {
                     soj = (A + B) / 2;
-                    if (Math.Abs(f.calculate(soj)) < E)
-                    {
-
-                        label1.Text = "x= " + soj + " F(x)= " + f.calculate(soj); // вывод результатов 
-                        o = 0;
-                        break;
-                    }
-                    else
-                        if ((f.calculate(soj) * f.calculate(A)) < 0)
+                    if ((f.calculate(soj) * f.calculate(A)) <= 0)
                     {
                         B = soj;
                     }
@@ -67,11 +58,8 @@ namespace WindowsFormsApp1
                         A = soj;
                     }
                 }
-                if (o==1)
-                {
-                    label1.Text = "нет корней";
-                }
-
+                chart1.Series[1].Points.AddXY((soj), f.calculate(soj));
+                label1.Text = "x= " + soj + " F(x)= " + f.calculate(soj); // вывод результатов 
             }
             else
             {
@@ -91,6 +79,7 @@ namespace WindowsFormsApp1
             textBox4.Text = "f(x)=";
             label1.Text = "";
             chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
         }
     }
 }
