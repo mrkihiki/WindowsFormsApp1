@@ -38,6 +38,7 @@ namespace WindowsFormsApp1
         }
         private void dichotomy(float A, float B, float E, Function f)
         {
+            chart1.Series[0].Points.Clear();
             for (float i = A; i <= B; i+=1)
             {
               
@@ -45,17 +46,20 @@ namespace WindowsFormsApp1
             }
             if (A < B)
             {
-                float soj=(A + B) / 2;
-                while ((Math.Abs(B-A) > E ))
+                float soj;
+                    soj=(A + B) / 2;
+                float r;
+                while ((B-A) > E )
                 {
                     soj = (A + B) / 2;
-                    if ((f.calculate(soj) * f.calculate(A)) <= 0)
+                     r = 0.01f*(B-A);
+                    if (f.calculate(soj - r) > f.calculate(soj + r))
                     {
-                        B = soj;
+                        A = soj - r;
                     }
                     else
                     {
-                        A = soj;
+                        B = soj + r;
                     }
                 }
                 chart1.Series[1].Points.AddXY((soj), f.calculate(soj));
